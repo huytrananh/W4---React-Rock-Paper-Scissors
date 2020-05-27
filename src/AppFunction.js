@@ -20,8 +20,8 @@ export const CHOICES = {
 }
 
 export default function AppFunction() {
-   let [playerResult,setPlayerResult]=useState("")
-   let [AIResult,setAIResult]=useState("")
+   let [playerResult,setPlayerResult]=useState("result")
+   let [AIResult,setAIResult]=useState("result")
   let result=""
   let [userC, setUserC] = useState({}) //state
   let [computerC, setComputerC] = useState({}) //state
@@ -36,7 +36,7 @@ export default function AppFunction() {
     let itemArray = Object.keys(CHOICES) // get the key from the object and make it an array
     console.log('Item Array', itemArray)
     let randomNum = Math.floor(Math.random() * itemArray.length) // 0-2
-    console.log('random number: '. randomNum)
+    console.log('random number: ',randomNum)
     let itemName = itemArray[randomNum] //have already random number, put random number in array that has names to get RANDOM NAME
     console.log('whats the item name: ', itemName)
     setComputerC(CHOICES[itemName]) //use random name to get the random object with URL to display image
@@ -52,7 +52,7 @@ export default function AppFunction() {
       result = itemName === "paper" ? "Victory!" : "Defeat!"
     }
     if (userChoice === itemName) 
-    result="Tie game!"
+      result="Tie game!"
 
 
       console.log(result,"dsauifchsidufsuidjvbgkjdfgdhf")
@@ -67,14 +67,12 @@ export default function AppFunction() {
 
   function showPlayerResult(result){
     console.log(result,"player")
-    if(result=="Victory!"){
+    if(result==="Victory!"){
       setPlayerResult("won")
-    }else if(result=="Defeat!"){
+    }else if(result==="Defeat!"){
       setPlayerResult("lose")
-    }else if(result=="Tie game!"){
+    }else if(result==="Tie game!"){
       setPlayerResult("tie")
-    }else{
-      setPlayerResult("return")
     }
   }
 
@@ -86,8 +84,6 @@ export default function AppFunction() {
       setAIResult("won")
     }else if(result==="Tie game!"){
       setAIResult("tie")
-    }else{
-      setAIResult("return")
     }
   }
 
@@ -105,13 +101,7 @@ export default function AppFunction() {
       </div>
       <Box title="COMPUTER" choice={computerC} result={AIResult}/>
       <div>
-        <ul>
-         {
-           history.map(elm =>
-            <li>{elm}</li>
-            )
-         }
-        </ul>
+        <ul>{ history.map(elm => <li>{elm}</li>) }</ul>
       </div>
     </div>
   )
